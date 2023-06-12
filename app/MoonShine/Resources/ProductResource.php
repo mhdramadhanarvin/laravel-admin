@@ -14,12 +14,12 @@ use MoonShine\Decorations\Block;
 
 class ProductResource extends Resource
 {
-	public static string $model = Product::class;
+  public static string $model = Product::class;
 
-	public static string $title = 'Products';
+  public static string $title = 'Products';
 
   public function fields(): array
-	{
+  {
     return [
       Block::make('Main Information', [
         ID::make()->sortable()->required(),
@@ -30,27 +30,27 @@ class ProductResource extends Resource
           ->min(1)->required(),
       ])
     ];
-	}
+  }
 
-	public function rules(Model $item): array
-	{
-	    return [];
-    }
+  public function rules(Model $item): array
+  {
+    return [];
+  }
 
-    public function search(): array
-    {
-        return ['id'];
-    }
+  public function search(): array
+  {
+    return ['id'];
+  }
 
-    public function filters(): array
-    {
-        return [];
-    }
+  public function filters(): array
+  {
+    return [];
+  }
 
-    public function actions(): array
-    {
-        return [
-            FiltersAction::make(trans('moonshine::ui.filters')),
-        ];
-    }
+  public function actions(): array
+  {
+    return [
+      FiltersAction::make(trans('moonshine::ui.filters')),
+    ];
+  }
 }

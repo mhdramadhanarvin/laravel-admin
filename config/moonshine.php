@@ -46,7 +46,7 @@ return [
     ],
     'middlewares' => [],
     'tinymce' => [
-        'file_manager' => false, // or 'laravel-filemanager' prefix for lfm
+        'file_manager' => 'laravel-filemanager', // or 'laravel-filemanager' prefix for lfm
         'token' => env('MOONSHINE_TINYMCE_TOKEN', ''),
         'version' => env('MOONSHINE_TINYMCE_VERSION', '6')
     ],
@@ -61,5 +61,6 @@ return [
             // 'https://moonshine.cutcode.dev' => 'Documentation',
             // 'https://github.com/moonshine-software/moonshine' => 'GitHub',
         ],
-    ]
+    ],
+    'use_package_routes' => false,
 ];

@@ -8,7 +8,7 @@ use MoonShine\Menu\MenuGroup;
 use MoonShine\Menu\MenuItem;
 use MoonShine\Resources\MoonShineUserResource;
 use MoonShine\Resources\MoonShineUserRoleResource;
-use App\MoonShine\Resources\ProductResource;
+use App\MoonShine\Resources\ArticleResource;
 
 class MoonShineServiceProvider extends ServiceProvider
 {
@@ -18,7 +18,7 @@ class MoonShineServiceProvider extends ServiceProvider
             MenuGroup::make('Users Management', [
                 MoonShineUserResource::class,
                 MoonShineUserRoleResource::class,
-                ProductResource::class,
+                ArticleResource::class,
             ])->translatable()->icon('users'),
 
             // MenuItem::make('Documentation', 'https://laravel.com')
