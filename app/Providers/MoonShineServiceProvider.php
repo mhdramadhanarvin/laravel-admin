@@ -12,18 +12,25 @@ use App\MoonShine\Resources\ArticleResource;
 
 class MoonShineServiceProvider extends ServiceProvider
 {
-    public function boot(): void
-    {
-        app(MoonShine::class)->menu([
-            MenuGroup::make('Users Management', [
-                MoonShineUserResource::class,
-                MoonShineUserRoleResource::class,
-                ArticleResource::class,
-            ])->translatable()->icon('users'),
+  public function boot(): void
+  {
+    app(MoonShine::class)->menu([
+      MenuGroup::make('Users Management', [
+        MoonShineUserResource::class,
+        MoonShineUserRoleResource::class,
+        // ArticleResource::class,
+      ])->translatable()->icon('users'),
 
-            // MenuItem::make('Documentation', 'https://laravel.com')
-            //     ->badge(fn() => 'Check'),
-            // MenuItem::make('Admins', new MoonShineUserResource()),
-        ]);
-    }
+      MenuGroup::make('Blog', [
+        // MenuItem::make('Categories', new CategoryResource(), 'heroicons.document'),
+        MenuItem::make('Articles', new ArticleResource(), 'heroicons.newspaper'),
+        // MenuItem::make('Comments', new CommentResource(), 'heroicons.chat-bubble-left')
+        //   ->badge(fn() => Comment::query()->count()),
+      ], 'heroicons.newspaper'),
+
+      // MenuItem::make('Documentation', 'https://laravel.com')
+      //     ->badge(fn() => 'Check'),
+      // MenuItem::make('Admins', new MoonShineUserResource()),
+    ]);
+  }
 }

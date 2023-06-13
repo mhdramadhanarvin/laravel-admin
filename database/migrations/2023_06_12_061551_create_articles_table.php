@@ -20,7 +20,8 @@ return new class extends Migration
                 ->nullOnDelete()
                 ->cascadeOnUpdate();
             
-            $table->string('title', 100);
+            $table->string('title', 200);
+            $table->string('slug', 200);
             $table->longText('description');
             $table->string('thumbnail');
             $table->integer('status')->default(1);

@@ -4,16 +4,19 @@ namespace App\MoonShine\Resources;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Article;
-use MoonShine\Resources\Resource;
-use MoonShine\Fields\ID;
-use MoonShine\Fields\Text;
 use MoonShine\Actions\FiltersAction;
-use MoonShine\Fields\SwitchBoolean;
 use MoonShine\Decorations\Block;
+use MoonShine\Decorations\Collapse;
+use MoonShine\Decorations\Flex;
+use MoonShine\Decorations\Heading;
 use MoonShine\Fields\TinyMce;
 use MoonShine\Fields\Image;
 use MoonShine\Fields\BelongsTo;
 use MoonShine\Fields\Date;
+use MoonShine\Fields\ID;
+use MoonShine\Fields\Text;
+use MoonShine\Fields\SwitchBoolean;
+use MoonShine\Resources\Resource;
 
 class ArticleResource extends Resource
 {
@@ -31,8 +34,25 @@ class ArticleResource extends Resource
           ->hidden()
           ->default(auth('moonshine')->user()),
 
-        Text::make('Title', 'title')
-          ->required(),
+        // Text::make('Title', 'title')
+        //   ->required(),
+
+        Collapse::make('Title/Slug', [
+          Heading::make('Title/Slug'),
+
+          Flex::make('flex-titles', [
+            Text::make('Title')
+              ->fieldContainer(false)
+              ->required(),
+
+            Text::make('Slug')
+              ->hideOnIndex()
+              ->fieldContainer(false)
+              ->required(),
+          ])
+            ->justifyAlign('start')
+            ->itemsAlign('start'),
+        ]),
 
         TinyMce::make('Description', 'description')
           ->hideOnIndex()
@@ -51,6 +71,7 @@ class ArticleResource extends Resource
         Date::make('Creation date', 'created_at')
           ->format('d.m.Y H:i')
           ->hideOnForm()
+          ->sortable(),
       ])
     ];
   }
